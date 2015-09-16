@@ -16,21 +16,26 @@ namespace Workers
 
     abstract public class parentWorker
     {
-        abstract public double avgPayMonth();
         protected string name;
         protected int id;
         protected double payment;
+
+        public parentWorker(string name, int id, double payment)
+        {
+            this.name = name;
+            this.id = id;
+            this.payment = payment;
+
+        }
+
+        abstract public double avgPayMonth();
     }
 
     public class hourPayWorker: parentWorker
     {
 
-        public hourPayWorker(string nameW, int idW, double payW)
-        {
-            name = nameW;
-            id = idW;
-            payment = payW;
-        }
+        public hourPayWorker(string name, int id, double payment) : base(name, id, payment)
+        { }
 
         public override double avgPayMonth()
         {
@@ -41,12 +46,8 @@ namespace Workers
     public class fixPayWorker: parentWorker
     {
 
-        public fixPayWorker(string nameW, int idW, double payW)
-        {
-            name = nameW;
-            id = idW;
-            payment = payW;
-        }
+        public fixPayWorker(string name, int id, double payment) : base (name, id, payment)
+        { }
 
         public override double avgPayMonth()
         {
