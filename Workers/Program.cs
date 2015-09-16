@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,23 +12,23 @@ namespace Workers
         static void Main(string[] args)
         {
             string data = "";
-            var stuff = new Employee[]
-            {
-                new PartTime ("Stuart", 10),
-                new PartTime ("Stenley", 12),
-                new PartTime ("Monkey", 19),
-                new PartTime ("Abibas", 9),
-                new FullTime ("Marty", 2100),
-                new FullTime ("Mary", 3000),
-                new FullTime ("Vampire", 2500),
-                new FullTime ("Lolz", 5500),
-            };
 
+            List<Employee> stuff = new List<Employee>();
+            stuff.Add(new PartTime("Stuart", 10));
+            stuff.Add(new PartTime("Stenley", 12));
+            stuff.Add(new PartTime("Abibas", 9));
+            stuff.Add(new PartTime("Monkey", 19));
+            stuff.Add(new FullTime("Marty", 2100));
+            stuff.Add(new FullTime("Mary", 3000));
+            stuff.Add(new FullTime("Vampire", 2500));
+            stuff.Add(new FullTime("Lolz", 5500));
+
+            stuff.Sort();
 
             foreach(var element in stuff)
             {
 
-                data += element.ToString() + "\n";
+                data += element.ToString() + " \n";
 
             }
             Console.Write(data);
@@ -44,35 +45,36 @@ namespace Workers
         FullTime
     };
 
-    abstract public class Employee : IComparable<Employee>
+    public abstract class Employee : IComparable<Employee>
     {
         protected string name;
-        static protected int id;
+        protected int id;
         protected double payment;
-        Counter count = new Counter();
 
         public Employee(string name, double payment)
         {
             this.name = name;
-            id = count.Increment();
+            id = new Counter().Increment();
             this.payment = payment;
 
         }
 
-        abstract public double AvgPayMonth();
-        abstract public int GetID();
-        abstract public string GetName();
-
-        public int CompareTo(Employee other)
-        {
-            if (this.payment == other.payment)
-                return this.name.CompareTo(other.name);
-            return other.payment.CompareTo(this.payment);
-        }
+        public abstract double AvgPayMonth();
+        public abstract int GetID();
+        public abstract string GetName();
 
         public override string ToString()
         {
             return GetID() + " " + GetName() + " " + AvgPayMonth();
+        }
+
+        public int CompareTo(Employee other)
+        {
+            if (payment == other.payment)
+            {
+                return this.name.CompareTo(other.name);
+            }
+            return other.payment.CompareTo(this.payment);
         }
     }
 
