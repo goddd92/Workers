@@ -10,9 +10,25 @@ namespace Workers
     {
         static void Main(string[] args)
         {
+            parentWorker[] stuff;
+            stuff = new hourPayWorker[0];
+            stuff = new hourPayWorker[1];
+            stuff = new hourPayWorker[2];
+            stuff = new hourPayWorker[3];
+            stuff = new fixPayWorker[4];
+            stuff = new fixPayWorker[5];
+            stuff = new fixPayWorker[6];
+            stuff = new fixPayWorker[7];
+            stuff = new fixPayWorker[8];
+
         }
     }
 
+    public enum EmployType
+    {
+        hourPay,
+        fullTime
+    };
 
     abstract public class parentWorker
     {
