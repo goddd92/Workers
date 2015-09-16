@@ -26,10 +26,11 @@ namespace Workers
 
             foreach(var element in stuff)
             {
-                Console.WriteLine(element);
 
                 data += element.GetID().ToString() + " " + element.GetName() + " " + element.AvgPayMonth()  + " \n";
+
             }
+            Console.Write(data);
             Console.ReadKey();
 
             System.IO.File.WriteAllText("Emploeye.txt", data);
@@ -39,22 +40,20 @@ namespace Workers
 
     public enum EmployType
     {
-        hourPay,
-        fullTime
+        PartyTime,
+        FullTime
     };
 
     abstract public class Employee : IComparable<Employee>
     {
         protected string name;
         static protected int id;
-        protected int iid = 0;
         protected double payment;
 
         public Employee(string name, double payment)
         {
             this.name = name;
-            iid++;
-            id = iid;
+            id++;
             this.payment = payment;
 
         }
