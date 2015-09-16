@@ -16,18 +16,20 @@ namespace Workers
 
     abstract public class parentWorker
     {
-        abstract public int avgPayMonth();
+        abstract public double avgPayMonth();
     }
 
     public class hourPayWorker: parentWorker
     {
+        private double payment;
+
         public hourPayWorker()
         {
 
         }
-        public override int avgPayMonth()
+        public override double avgPayMonth()
         {
-            return 0;
+            return 20.8 * 8 * payment;
         }
     }
 
@@ -37,7 +39,7 @@ namespace Workers
         {
 
         }
-        public override int avgPayMonth()
+        public override double avgPayMonth()
         {
             return 0;
         }
