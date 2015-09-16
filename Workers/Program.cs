@@ -27,7 +27,7 @@ namespace Workers
             foreach(var element in stuff)
             {
 
-                data += element.GetID().ToString() + " " + element.GetName() + " " + element.AvgPayMonth()  + " \n";
+                data += element.ToString();
 
             }
             Console.Write(data);
@@ -67,6 +67,11 @@ namespace Workers
             if (this.payment == other.payment)
                 return this.name.CompareTo(other.name);
             return other.payment.CompareTo(this.payment);
+        }
+
+        public string ToString()
+        {
+            return GetID() + " " + GetName() + " " + AvgPayMonth() + " \n";
         }
     }
 
