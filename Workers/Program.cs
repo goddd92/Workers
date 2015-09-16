@@ -17,31 +17,40 @@ namespace Workers
     abstract public class parentWorker
     {
         abstract public double avgPayMonth();
+        protected string name;
+        protected int id;
+        protected double payment;
     }
 
     public class hourPayWorker: parentWorker
     {
-        private double payment;
 
-        public hourPayWorker()
+        public hourPayWorker(string nameW, int idW, double payW)
         {
-
+            name = nameW;
+            id = idW;
+            payment = payW;
         }
+
         public override double avgPayMonth()
         {
             return 20.8 * 8 * payment;
         }
     }
 
-    class fixPayWorker: parentWorker
+    public class fixPayWorker: parentWorker
     {
-        public fixPayWorker()
-        {
 
+        public fixPayWorker(string nameW, int idW, double payW)
+        {
+            name = nameW;
+            id = idW;
+            payment = payW;
         }
+
         public override double avgPayMonth()
         {
-            return 0;
+            return payment;
         }
     }
 }
