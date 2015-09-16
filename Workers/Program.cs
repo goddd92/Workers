@@ -10,16 +10,16 @@ namespace Workers
     {
         static void Main(string[] args)
         {
-            var stuff = new parentWorker[]
+            var stuff = new Employee[]
             {
-                new hourPayWorker ("Stuart", 10),
-                new hourPayWorker ("Stenley", 12),
-                new hourPayWorker ("Monkey", 19),
-                new hourPayWorker ("Abibas", 9),
-                new fixPayWorker ("Marty", 2100),
-                new fixPayWorker ("Mary", 3000),
-                new fixPayWorker ("Vampire", 2500),
-                new fixPayWorker ("Lolz", 5500),
+                new PartTime ("Stuart", 10),
+                new PartTime ("Stenley", 12),
+                new PartTime ("Monkey", 19),
+                new PartTime ("Abibas", 9),
+                new FullTime ("Marty", 2100),
+                new FullTime ("Mary", 3000),
+                new FullTime ("Vampire", 2500),
+                new FullTime ("Lolz", 5500),
             };
 
             StringBuilder data = new StringBuilder();
@@ -36,13 +36,13 @@ namespace Workers
         fullTime
     };
 
-    abstract public class parentWorker : IComparable
+    abstract public class Employee : IComparable
     {
         protected string name;
         static protected int id = 0;
         protected double payment;
 
-        public parentWorker(string name, double payment)
+        public Employee(string name, double payment)
         {
             this.name = name;
             id++;
@@ -61,10 +61,10 @@ namespace Workers
         }
     }
 
-    public class hourPayWorker: parentWorker
+    public class PartTime: Employee
     {
 
-        public hourPayWorker(string name, double payment) : base(name, payment)
+        public PartTime(string name, double payment) : base(name, payment)
         { }
 
         public override double avgPayMonth()
@@ -81,10 +81,10 @@ namespace Workers
         }
     }
 
-    public class fixPayWorker: parentWorker
+    public class FullTime: Employee
     {
 
-        public fixPayWorker(string name, double payment) : base (name, payment)
+        public FullTime(string name, double payment) : base (name, payment)
         { }
 
         public override double avgPayMonth()
