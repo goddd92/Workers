@@ -25,7 +25,7 @@ namespace Workers
             StringBuilder data = new StringBuilder();
             data.Append();
 
-            System.IO.File.WriteAllLines("C:\\Users\\koshkowskyii\\Documents\\Emploeye.txt", stuff[]);
+            System.IO.File.WriteAllLines("Emploeye.txt", stuff[]);
 
         }
     }
