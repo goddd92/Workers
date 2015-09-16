@@ -70,7 +70,7 @@ namespace Workers
             return other.payment.CompareTo(this.payment);
         }
 
-        public string ToString()
+        public override string ToString()
         {
             return GetID() + " " + GetName() + " " + AvgPayMonth();
         }
