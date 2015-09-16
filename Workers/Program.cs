@@ -50,9 +50,9 @@ namespace Workers
 
         }
 
-        abstract public double avgPayMonth();
-        abstract public int getID();
-        abstract public string getName();
+        abstract public double AvgPayMonth();
+        abstract public int GetID();
+        abstract public string GetName();
 
 
         public int CompareTo(object obj)
@@ -67,15 +67,15 @@ namespace Workers
         public PartTime(string name, double payment) : base(name, payment)
         { }
 
-        public override double avgPayMonth()
+        public override double AvgPayMonth()
         {
             return 20.8 * 8 * payment;
         }
-        public override int getID()
+        public override int GetID()
         {
             return id;
         }
-        public override string getName()
+        public override string GetName()
         {
             return name;
         }
@@ -87,15 +87,15 @@ namespace Workers
         public FullTime(string name, double payment) : base (name, payment)
         { }
 
-        public override double avgPayMonth()
+        public override double AvgPayMonth()
         {
             return payment;
         }
-        public override int getID()
+        public override int GetID()
         {
             return id;
         }
-        public override string getName()
+        public override string GetName()
         {
             return name;
         }
