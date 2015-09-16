@@ -10,6 +10,7 @@ namespace Workers
     {
         static void Main(string[] args)
         {
+            string data = "";
             var stuff = new Employee[]
             {
                 new PartTime ("Stuart", 10),
@@ -22,10 +23,16 @@ namespace Workers
                 new FullTime ("Lolz", 5500),
             };
 
-            StringBuilder data = new StringBuilder();
-            data.Append();
 
-            System.IO.File.WriteAllLines("Emploeye.txt", stuff[]);
+            foreach(var element in stuff)
+            {
+                Console.WriteLine(element);
+
+                data += element.GetID().ToString() + " " + element.GetName() + " " + element.AvgPayMonth()  + " \n";
+            }
+            Console.ReadKey();
+
+            System.IO.File.WriteAllText("Emploeye.txt", data);
 
         }
     }
@@ -36,16 +43,18 @@ namespace Workers
         fullTime
     };
 
-    abstract public class Employee : IComparable
+    abstract public class Employee : IComparable<Employee>
     {
         protected string name;
-        static protected int id = 0;
+        static protected int id;
+        protected int iid = 0;
         protected double payment;
 
         public Employee(string name, double payment)
         {
             this.name = name;
-            id++;
+            iid++;
+            id = iid;
             this.payment = payment;
 
         }
@@ -54,10 +63,11 @@ namespace Workers
         abstract public int GetID();
         abstract public string GetName();
 
-
-        public int CompareTo(object obj)
+        public int CompareTo(Employee other)
         {
-            return name.CompareTo(obj);
+            if (this.payment == other.payment)
+                return this.name.CompareTo(other.name);
+            return other.payment.CompareTo(this.payment);
         }
     }
 
