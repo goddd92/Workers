@@ -27,7 +27,7 @@ namespace Workers
             foreach(var element in stuff)
             {
 
-                data += element.ToString();
+                data += element.ToString() + "\n";
 
             }
             Console.Write(data);
@@ -49,11 +49,12 @@ namespace Workers
         protected string name;
         static protected int id;
         protected double payment;
+        Counter count = new Counter();
 
         public Employee(string name, double payment)
         {
             this.name = name;
-            id++;
+            id = count.Increment();
             this.payment = payment;
 
         }
@@ -71,7 +72,7 @@ namespace Workers
 
         public string ToString()
         {
-            return GetID() + " " + GetName() + " " + AvgPayMonth() + " \n";
+            return GetID() + " " + GetName() + " " + AvgPayMonth();
         }
     }
 
@@ -112,6 +113,16 @@ namespace Workers
         public override string GetName()
         {
             return name;
+        }
+    }
+
+    public class Counter
+    {
+        private static int _i;
+
+        public int Increment()
+        {
+            return _i++;
         }
     }
 }
